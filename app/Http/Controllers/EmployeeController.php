@@ -113,18 +113,13 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Employee $employee)
-    {       
-        /*request()->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'designation' => ['required'],
-        ]);  */
+    {   
+       
         request()->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'photo' => ['mimes:jpg,png,jpeg,gif,svg|max:5120'],
         ]); 
-        // dd("test");
         
         if($request->file()) {
             if( $employee->photo !== '') {
@@ -138,7 +133,7 @@ class EmployeeController extends Controller
         } else {
             $image_name ='';
         }
-// dd($request);
+
         $employee->name = $request->name;
         $employee->email = $request->email;
         $employee->designation_id = $request->designation;
